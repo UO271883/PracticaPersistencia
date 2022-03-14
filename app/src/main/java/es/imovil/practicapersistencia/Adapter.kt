@@ -8,7 +8,7 @@ import es.imovil.practicapersistencia.databinding.ItemViewBinding
 class Adapter: ListAdapter<Book, ViewHolder>(Book.DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        //OPCION 1: RECIVIR DEL ADAPTADOR LA VISTA CREADA
+        //OPCION 1: RECIBIR DEL ADAPTADOR LA VISTA CREADA
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.item_view, parent, false )
         return ViewHolder(view)
@@ -19,9 +19,7 @@ class Adapter: ListAdapter<Book, ViewHolder>(Book.DIFF_CALLBACK) {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-
-        TODO("Not yet implemented")
+        holder.bind(getItem(position))
     }
 
 }

@@ -14,7 +14,11 @@ data class Book(var title:String,
         }
 
         override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
-            return oldItem.author == newItem.author && oldItem.title == newItem.title
+            return  oldItem.author    == newItem.author    &&
+                    oldItem.title     == newItem.title     &&
+                    oldItem.isbn      == newItem.isbn      &&
+                    oldItem.editorial == newItem.editorial &&
+                    oldItem.price     == newItem.price
         }
 
     }
