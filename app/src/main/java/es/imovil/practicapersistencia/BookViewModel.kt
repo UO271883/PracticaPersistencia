@@ -11,6 +11,7 @@ class BookViewModel (application: Application) : AndroidViewModel(application){
 
     val app = application
     var bookList = mutableListOf<Book>()
+    lateinit var archivename: String
 
     fun getListSize(): Int{
         return bookList.size
@@ -26,11 +27,16 @@ class BookViewModel (application: Application) : AndroidViewModel(application){
     }
 
     fun restoreBookList(){
-        val file = File(app.filesDir, FILENAME)
+        System.out.println("Archivename en ext: " + app.getExternalFilesDir(null).toString())
+        System.out.println("Archivename en int: " + app.filesDir)
+        val folder = app.getExternalFilesDir(null)
+        val file: File = File(folder, FILENAME)
+        //val file = File(app.filesDir, FILENAME)
         var lista: List<Book>
-        System.out.println("fuera del if restoreBookList")
+        //System.out.println("fuera del if restoreBookList")
         if (file.exists()) {
-            System.out.println("dentro del if")
+            //System.out.println("dentro del if")
+            System.out.print("Filename joder" + file.toString())
             val contenido = file.readText()
             val listType = object : TypeToken<List<Book>>() {}.type
             lista = Gson().fromJson(contenido, listType)
@@ -39,14 +45,13 @@ class BookViewModel (application: Application) : AndroidViewModel(application){
     }
 
     fun saveBookList(){
-        val file = File(app.filesDir, FILENAME)
-        var cadena = ""
-        System.out.println("fuera del if saveBookList")
-
-
-        System.out.println("====================== Libro 1 ======================" + bookList[0].title)
-        cadena = Gson().toJson(bookList)
+        //val file = File(app.filesDir, FILENAME)
+        val folder = app.getExternalFilesDir(null)
+        val file: File = File(folder, FILENAME)
+        //System.out.println("fuera del if saveBookList")
+        //System.out.println("====================== Libro 1 ======================" + bookList[0].title)
+        System.out.println("Filename joder" + file.toString())
+        var cadena: String = Gson().toJson(bookList)
         file.writeText(cadena)
-
     }
 }
