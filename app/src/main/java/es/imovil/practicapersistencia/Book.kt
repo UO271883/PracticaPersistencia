@@ -1,5 +1,6 @@
 package es.imovil.practicapersistencia
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -16,12 +17,9 @@ data class Book(@PrimaryKey var title:String,
             return oldItem == newItem
         }
 
+        @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
-            return  oldItem.author    == newItem.author    &&
-                    oldItem.title     == newItem.title     &&
-                    oldItem.isbn      == newItem.isbn      &&
-                    oldItem.editorial == newItem.editorial &&
-                    oldItem.price     == newItem.price
+                   return oldItem === newItem
         }
 
     }
